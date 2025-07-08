@@ -1,0 +1,65 @@
+﻿@page "/weather"
+@using nq_blazor_test.Application.Interfaces
+@using nq_blazor_test.Domain.Entities
+@inject IWeatherService WeatherService
+
+<h3>Weather Forecasts</h3>
+
+@if (_errorMessage is not null)
+{
+    <div class="alert alert-danger">@_errorMessage</div>
+}
+else if (_weatherList is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temperature (°C)</th>
+                <th>Summary</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var w in _weatherList)
+            {
+                <tr class="@GetRowClass(w.Summary)">
+                    <td>@w.Date.ToShortDateString()</td>
+                    <td>@w.TemperatureC</td>
+                    <td>@w.Summary</td>
+                    <td>@w.Location</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<WeatherCondition>? _weatherList;
+    private string? _errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await WeatherService.GetWeatherAsync();
+
+        if (result.IsError)
+        {
+            _errorMessage = string.Join(", ", result.Errors.Select(e => e.Description));
+        }
+        else
+        {
+            _weatherList = result.Value;
+        }
+    }
+
+    private string GetRowClass(string summary) => summary switch
+    {
+        "Freezing" or "Scorching" => "table-danger",
+        "Bracing" or "Sweltering" => "table-warning",
+        _ => ""
+    };
+}
