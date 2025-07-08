@@ -1,0 +1,15 @@
+﻿<select class="form-select w-auto mb-3" @onchange="OnRoleChanged">
+    <option value="">Select Role</option>
+    <option value="Firefighter">Firefighter</option>
+    <option value="Snow Groomer">Snow Groomer</option>
+</select>
+
+@code {
+    [Parameter]
+    public EventCallback<string> RoleChanged { get; set; }
+
+    private async Task OnRoleChanged(ChangeEventArgs e)
+    {
+        await RoleChanged.InvokeAsync(e.Value?.ToString());
+    }
+}
