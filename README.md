@@ -64,6 +64,9 @@ nq-blazor-test/
 
 ---
 
+## 🔁 API Flexibility Note
+⚙️ This project currently uses mock data via a service layer, but the architecture is fully prepared to integrate a real external API or tools repository endpoint. Replacing the mock with a live API implementation can be done by simply swapping the IWeatherService interface implementation in the Infrastructure layer.
+
 ## 📷 Screenshots
 ![image](https://github.com/user-attachments/assets/a965800b-b8fa-4087-accc-24454da44356)
 ![image](https://github.com/user-attachments/assets/f6348c6e-97a2-481f-b6df-852213744033)
