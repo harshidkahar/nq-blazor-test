@@ -1,6 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="ErrorOr" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\nq_blazor_test.Application\nq_blazor_test.Application.csproj" />
     <ProjectReference Include="..\nq_blazor_test.Domain\nq_blazor_test.Domain.csproj" />
   </ItemGroup>
