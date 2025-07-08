@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\nq_blazor_test.Application\nq_blazor_test.Application.csproj" />
+    <ProjectReference Include="..\nq_blazor_test.Domain\nq_blazor_test.Domain.csproj" />
     <ProjectReference Include="..\nq_blazor_test.Infrastructure\nq_blazor_test.Infrastructure.csproj" />
   </ItemGroup>
 
